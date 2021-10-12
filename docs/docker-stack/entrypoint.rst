@@ -194,6 +194,27 @@ If there are any other arguments - they are simply passed to the "airflow" comma
     optional arguments:
       -h, --help         show this help message and exit
 
+Add your own entrypoint
+-----------------------
+
+Airflow image executes a lot of steps in the entrypoint, but it does not do everything that you might
+want to run - and you might want to provide your own entrypoint which does any custom operations.
+Such ``custom`` entryopoint should be run after the main entrypoint. You can even execute
+the usual components of airflow - scheduler, webserver, worker, triggerer in such script.
+The entrypoint can be addedd to the image by extending it:
+
+.. code-block:: Dockerfile
+
+    FROM airflow::2.3.0.dev0
+    COPY my_entrypoint.sh /
+
+
+And then you can run this script by running the command:
+
+.. code-block:: bash
+
+  docker run -it apache/airflow:2.3.0.dev0-python3.6 bash -c "/my_entrypoint.sh"
+
 
 Signal propagation
 ------------------
