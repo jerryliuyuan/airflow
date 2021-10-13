@@ -201,7 +201,7 @@ Airflow image executes a lot of steps in the entrypoint, but it does not do ever
 want to run - and you might want to provide your own entrypoint which does any custom operations.
 Such *custom* entrypoint should be run after the main entrypoint. You can even execute
 the usual components of airflow - scheduler, webserver, worker, triggerer in such script.
-The entrypoint can be addedd to the image by extending it:
+The entrypoint can be added to the image by extending it:
 
 .. code-block:: Dockerfile
 
